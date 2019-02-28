@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Classical Guitar Quiz App</title>
+    <meta name="description" content="Test your knowledge about the world of classical guitar!">
+    <link href="main.css" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Metrophobic" rel="stylesheet">
+  </head>
+  <body>
+    <header role="banner">
+            <h1>How well do you know the classical guitar?</h1>
+            <h2>Test your knowledge, and remember to keep practicing!</h2>
+    </header>
+    <main role="main">
+            <section id="question-page" role="main">
+             <h2 id="question">The question</h2>
+             
+             <form>
+               <fieldset class="quiz-form">
+                 <label>
+                   <input class="answer" type="radio" name="option" checked="">
+                   <span>answer 1</span>
+                 </label>
+
+                 <label>
+                    <input class="answer" type="radio" name="option" checked="">
+                    <span>answer 2</span>
+                </label>
+
+                <label>
+                    <input class="answer" type="radio" name="option" checked="">
+                    <span>answer 3</span>
+                </label>
+                      
+           
+               </fieldset>  
+               <button class='submit-button'>Submit</button>
+         
+             </form>
+             </section>
+             <section id="scorecard" role="status">
+                    <div>Question Number 0/10</div>
+                    <div>Score: 0</div>
+                    </section>
+            </main>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="index.js"></script>
+  </body>
+</html>

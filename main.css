@@ -1,0 +1,31 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: metrophobic;
+}
+header {
+    text-align: center;
+}
+
+.quiz-form {
+display: flex;
+}
+
+#question {
+    text-align: center;
+}
+
+#scorecard {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.submit-button {
+    display: flex;
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+}
