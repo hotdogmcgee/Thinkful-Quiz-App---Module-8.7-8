@@ -12,14 +12,12 @@ header {
 
 @media only screen and (min-width: 768px) {
     .quiz-form, .incorrect-answer, .correct-answer {
- 
         width: 60%;
         margin: 0 auto;
     }
 
     .score li {
         font-size: 35px;
-
     }
 
   }
@@ -33,17 +31,11 @@ header {
 
     .score li {
         font-size: 20px;
-
     }
   }
 
 #question {
     text-align: center;
-}
-
-#scorecard {
-    display: flex;
-    justify-content: space-evenly;
 }
 
 .quiz-form {
@@ -62,7 +54,6 @@ header {
     align-items: center;
     justify-content: center;
     font-size: 30px;
-
 }
 
 .answer-template {
@@ -72,7 +63,7 @@ header {
 
 .score {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     padding: 0;
 }
 
