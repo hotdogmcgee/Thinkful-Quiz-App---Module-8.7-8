@@ -18,14 +18,16 @@ let questionIndex = 0;
 
 
 function handleSubmit() {
-    $('form').on('submit', function(event) {
+    $('main').on('click', '.submit-button', function(event) {
         event.preventDefault();
         let answer = $('input:checked');
         let answerVal = answer.val();
-        let correctAnswer = `${STORE[questionIndex].correctAnswer}`
+        let correctAnswer = `${STORE[questionIndex - 1].correctAnswer}`
         if (answerVal === correctAnswer) {
             renderMain(true, false);
             } else {
+                console.log('hello')
+                console.log(answerVal)
             renderMain(false, false);
             }
         console.log('yoyoy');
@@ -111,7 +113,15 @@ function showCorrect() {
 //returns a page showing that a user clicked the wrong answer, provides feedback.
 function showIncorrect() {
     console.log('wrong answer submitted');
+    $('main').html(`
+    <section class="feedback-page" role="main">
+        <h2>You got it wrong!</h2>
+        <img src="https://github.com/hotdogmcgee/Thinkful-Quiz-App---Module-8.7-8/blob/master/images/Broken%20guitar.jpg?raw=true" alt="Sad broken guitar">
+        <button id="js-next-button">Next Question</button>
+    </section>
+    `)
 }
+
 
 //handles event for when user starts a quiz
 function handleStart() {
