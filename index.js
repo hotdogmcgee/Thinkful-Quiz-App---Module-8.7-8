@@ -1,16 +1,5 @@
 'use strict'
 
-// $('.middle-class').html('')
-
-// $('.middle').html(renderMiddle())
-
-
-
-
-
-
-
-
 let userScore = 0;
 let questionNum = 1;
 let questionIndex = 0;
@@ -18,11 +7,11 @@ let questionIndex = 0;
 
 
 function handleSubmit() {
-    $('main').on('click', '.submit-button', function(event) {
+    $('main').on('submit', 'form', function(event) {
         event.preventDefault();
         let answer = $('input:checked');
         let answerVal = answer.val();
-        let correctAnswer = `${STORE[questionIndex - 1].correctAnswer}`
+        let correctAnswer = `${STORE[questionIndex].correctAnswer}`
         if (answerVal === correctAnswer) {
             renderMain(true, false);
             } else {
@@ -30,26 +19,19 @@ function handleSubmit() {
                 console.log(answerVal)
             renderMain(false, false);
             }
-        console.log('yoyoy');
+        console.log('submit handled');
     })
 }
 
-//user selects answer on submit run user feedback
-// function userSelectAnswer () {
-//     $('form').on('submit', function (event) {
-//       event.preventDefault();
-//       let selected = $('input:checked');
-//       let answer = selected.val();
-//       let correctAnswer = `${STORE[questionNumber].correctAnswer}`;
-//       if (answer === correctAnswer) {
-//         selected.parent().addClass('correct');
-//         ifAnswerIsCorrect();
-//       } else {
-//         selected.parent().addClass('wrong');
-//         ifAnswerIsWrong();
-//       }
-//     });
-//   }
+//handles operation when user clicks 'next question'
+function handleNextQuestion() {
+    $('main').on('click', '.js-next-question', function(event) {
+        renderMain(false, true);
+        console.log('next question loaded')
+        }
+    )
+}
+
 
 //returns HTML in DOM when user clicks on next question/start quiz
 function createQuestion() {
@@ -58,18 +40,18 @@ function createQuestion() {
         <form>
             <fieldset class="quiz-form">
                 <label class="answer-template">
-                    <input class="answer" type="radio" name="option" checked=""><span>${STORE[questionIndex].answers[0]}</span>
+                    <input class="answer" type="radio" name="option" value="${STORE[questionIndex].answers[0]}"><span>${STORE[questionIndex].answers[0]}</span>
                 </label>
                 <label class="answer-template"> 
-                    <input class="answer" type="radio" name="option" checked=""><span>${STORE[questionIndex].answers[1]}</span>
+                    <input class="answer" type="radio" name="option" value="${STORE[questionIndex].answers[1]}"><span>${STORE[questionIndex].answers[1]}</span>
                     </label>
                 <label class="answer-template">
-                    <input class="answer" type="radio" name="option" checked=""><span>${STORE[questionIndex].answers[2]}</span>
+                    <input class="answer" type="radio" name="option" value="${STORE[questionIndex].answers[2]}"><span>${STORE[questionIndex].answers[2]}</span>
                 </label>
                 <label class="answer-template">
-                    <input class="answer" type="radio" name="option" checked=""><span>${STORE[questionIndex].answers[3]}</span>
+                    <input class="answer" type="radio" name="option" value="${STORE[questionIndex].answers[3]}"><span>${STORE[questionIndex].answers[3]}</span>
                 </label>
-                <button class="submit-button js-next-question">Submit</button>
+                <button class="submit-button">Submit</button>
             </fieldset>
         </form>
         </section>`)
@@ -77,35 +59,52 @@ function createQuestion() {
 
 //larger function designed to handle rendering of Main section when form button is clicked, calls on other functions to return values
 function renderMain(isCorrect, renderNext) {
+    if (questionIndex < 10) {
+
     if (renderNext === true){
         createQuestion();
-        increaseQuestionIndex();
-        increaseQuestionNumber();
-        console.log('second')
       }
       else {
             if (isCorrect === true) {
-                showCorrect();
                 addToScore();
+                showCorrect();
+                updateQuestionNumber ()
                 increaseQuestionIndex();
                 increaseQuestionNumber();
             }
              else {
                 showIncorrect();
+                updateQuestionNumber ()
                 increaseQuestionIndex();
                 increaseQuestionNumber();
             }
-      }
+        }
+    } else if (questionIndex >= 10) {
+        $('main').on('click', '.js-next-question', function(event) {
+            renderFinalPage()
+            console.log('last page')
+        })
+    }
+} 
+
+//renders last page, displaying user score and giving option to try again
+function renderFinalPage() {
+    $('main').html(`
+     <button onclick="window.location.href ='index.html';">
+        Start the Quiz Again!
+     </button
+    `)
 }
 
 //returns a page showing that a user clicked the correct answer
 function showCorrect() {
     console.log('correct answer submitted');
+    updateScore ();
     $('main').html(`
     <section class="feedback-page" role="main">
         <h2>Correct!</h2>
         <img src="https://github.com/hotdogmcgee/Thinkful-Quiz-App---Module-8.7-8/blob/master/images/Segovia%20-%20You%20Got%20it%20Right!.jpg?raw=true" alt="Segovia Smiling">
-        <button id="js-next-button">Next Question</button>
+        <button class="js-next-question">Next</button>
     </section>
     `)
 }
@@ -117,7 +116,7 @@ function showIncorrect() {
     <section class="feedback-page" role="main">
         <h2>You got it wrong!</h2>
         <img src="https://github.com/hotdogmcgee/Thinkful-Quiz-App---Module-8.7-8/blob/master/images/Broken%20guitar.jpg?raw=true" alt="Sad broken guitar">
-        <button id="js-next-button">Next Question</button>
+        <button class="js-next-question">Next</button>
     </section>
     `)
 }
@@ -125,49 +124,56 @@ function showIncorrect() {
 
 //handles event for when user starts a quiz
 function handleStart() {
-    console.log('first');
     $('.js-first-question').on('click', function(event){
         renderMain(false, true);
-        console.log('four')
     })
-    console.log('third');
+}
+
+//changes score number in footer of page
+function updateScore () {
+    $('footer').find('.footer-score').text(userScore);
+    console.log('score updated');
+}
+
+//changes question number in footer of page
+function updateQuestionNumber () {
+    $('footer').find('.footer-question-number').text(questionNum);
+    console.log('questionNum updated');
 }
 
 //handles event for when user re-starts a quiz
-function handleRestart() {
-
-}
-
-//checks if user submitted correct answer
-// function checkAnswer(var1) {
-//     if (var1 === STORE[questionIndex].correctAnswer) {
-//         console.log('hello');
-//         return true
-//     } else {
-//         console.log('goodbye')
-//         return false
+// function handleRestart() {
+//     if (questionIndex === 10) {
+//         $('main').on('click', '.js-next-question', function(event) {
+//             renderFinalPage()
+//             console.log('last page')
+//         })
 //     }
 // }
 
 //adds to user score when a correct answer is submitted
 function addToScore () {
     userScore++;
+    console.log('added to userScore');
 }
 
 //increases question number, to be used when 'next question' is clicked.
 function increaseQuestionNumber () {
     questionNum++;
+    console.log('added to quetionNum');
 }
 
 //increases the variable questionIndex, which is used for the STORE array in data.js
 function increaseQuestionIndex() {
     questionIndex++;
+    console.log('added to questionIndex');
 }
 
 
 function makeQuiz() {
     handleStart();
     handleSubmit();
+    handleNextQuestion();
 }
 
 $(makeQuiz);
