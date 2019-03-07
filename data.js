@@ -60,7 +60,7 @@ const STORE = [
              'Daniel Friedrich',
              'Jose Ramirez',
         ],
-        correctAnswer: 'Daniel Friedrich'
+        correctAnswer: 'Thomas Humphrey'
     },
     {
         question: '7.  In which piece are the words, "Charlotte, adieu" written at the end of the piece?',

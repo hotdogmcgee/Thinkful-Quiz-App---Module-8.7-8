@@ -10,12 +10,25 @@ header {
     margin-bottom: 50px;
 }
 
+header h1 {
+    font-size: 35px;
+}
+
+header h2 {
+    font-size: 28px;
+}
+
+
+
 @media only screen and (min-width: 768px) {
     .quiz-form, .incorrect-answer, .correct-answer {
         width: 60%;
         margin: 0 auto;
     }
 
+    .answer-template {
+        font-size: 40px;
+    }
     .score li {
         font-size: 35px;
     }
@@ -23,10 +36,12 @@ header {
   }
 
  @media only screen and (max-width: 768px) {
-    .quiz-form, .incorrect-answer, .correct-answer  {
-        width: 100%;
+     html {
+        width: fit-content;
+     }
+     
+    .quiz-form  {
         margin: 0 auto;
-        padding: 20px;
     }
 
     .score li {
@@ -58,7 +73,8 @@ header {
 
 .answer-template {
     display: block;
-    height: 40px;
+    font-size: 30px;
+    margin-bottom: 20px;
 }
 
 .score {
@@ -75,9 +91,15 @@ header {
 .correct-answer {
     text-align: center;
     background-color: lightseagreen;
+    font-size: 30px;
 }
 
 .incorrect-answer {
     text-align: center;
     background-color: lightcoral;
+    font-size: 30px;
+}
+
+.feedback-image-incorrect {
+    width: 80%;
 }
