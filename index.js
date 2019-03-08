@@ -89,7 +89,7 @@ function showCorrect() {
     <section class="correct-answer" role="main">
         <h2>Correct!</h2>
         <img class="feedback-image-correct" src="https://github.com/hotdogmcgee/Thinkful-Quiz-App---Module-8.7-8/blob/master/images/Segovia%20-%20You%20Got%20it%20Right!.jpg?raw=true" alt="Segovia Smiling">
-        <button class="js-next-question">Next Question</button>
+        <button class="js-next-question submit-button">Next Question</button>
     </section>
     `)
     } else {
@@ -99,7 +99,7 @@ function showCorrect() {
     <section class="correct-answer" role="main">
         <h2>Correct!</h2>
         <img class="feedback-image-correct" src="https://github.com/hotdogmcgee/Thinkful-Quiz-App---Module-8.7-8/blob/master/images/Segovia%20-%20You%20Got%20it%20Right!.jpg?raw=true" alt="Segovia Smiling">
-        <button class="js-next-question">See Results</button>
+        <button class="js-next-question submit-button">See Results</button>
     </section>
     `)
     }
@@ -114,7 +114,7 @@ function showIncorrect() {
         <h2>You got it wrong!</h2>
         <p>The correct answer is ${STORE[questionIndex - 1].correctAnswer}</p>
         <img class="feedback-image-wrong" src="https://github.com/hotdogmcgee/Thinkful-Quiz-App---Module-8.7-8/blob/master/images/Broken%20guitar.jpg?raw=true" alt="Sad broken guitar">
-        <button class="js-next-question">Next Question</button>
+        <button class="js-next-question submit-button">Next Question</button>
     </section>
     `)
     } else {
@@ -125,7 +125,7 @@ function showIncorrect() {
         <h2>You got it wrong!</h2>
         <p>The correct answer is ${STORE[questionIndex - 1].correctAnswer}</p>
         <img class="feedback-image-wrong" src="https://github.com/hotdogmcgee/Thinkful-Quiz-App---Module-8.7-8/blob/master/images/Broken%20guitar.jpg?raw=true" alt="Sad broken guitar">
-        <button class="js-next-question">See Results</button>
+        <button class="js-next-question submit-button">See Results</button>
     </section>
     `)
     }
@@ -136,7 +136,7 @@ function renderFinalPage() {
     $('main').html(`
     <section role="main" class="final-page">
         <h2>You scored ${userScore} points out of ten.</h2>
-        <button class="restart-quiz-button">
+        <button class="restart-quiz-button submit-button">
             Start the Quiz Again!
         </button
     </section>
@@ -146,7 +146,7 @@ function renderFinalPage() {
 
 //handles event for when user starts a quiz
 function handleStart() {
-    $('.js-first-question').on('click', function(event){
+    $('.first-question').on('click', function(event){
         renderMain(false, true);
     })
 }
