@@ -4,8 +4,6 @@ let userScore = 0;
 let questionNum = 0;
 let questionIndex = 0;
 
-
-
 function handleSubmit() {
     $('main').on('submit', 'form', function(event) {
         event.preventDefault();
@@ -88,7 +86,9 @@ function showCorrect() {
     $('main').html(`
     <section class="correct-answer" role="main">
         <h2>Correct!</h2>
-        <img class="feedback-image-correct" src="https://github.com/hotdogmcgee/Thinkful-Quiz-App---Module-8.7-8/blob/master/images/Segovia%20-%20You%20Got%20it%20Right!.jpg?raw=true" alt="Segovia Smiling">
+        <div>
+            <img class="feedback-image-correct" src="https://github.com/hotdogmcgee/Thinkful-Quiz-App---Module-8.7-8/blob/master/images/Segovia%20-%20You%20Got%20it%20Right!.jpg?raw=true" alt="Segovia Smiling">
+        </div>
         <button class="js-next-question submit-button">Next Question</button>
     </section>
     `)
@@ -98,7 +98,9 @@ function showCorrect() {
         $('main').html(`
     <section class="correct-answer" role="main">
         <h2>Correct!</h2>
-        <img class="feedback-image-correct" src="https://github.com/hotdogmcgee/Thinkful-Quiz-App---Module-8.7-8/blob/master/images/Segovia%20-%20You%20Got%20it%20Right!.jpg?raw=true" alt="Segovia Smiling">
+        <div>
+            <img class="feedback-image-correct" src="https://github.com/hotdogmcgee/Thinkful-Quiz-App---Module-8.7-8/blob/master/images/Segovia%20-%20You%20Got%20it%20Right!.jpg?raw=true" alt="Segovia Smiling">
+        </div>
         <button class="js-next-question submit-button">See Results</button>
     </section>
     `)
@@ -113,7 +115,9 @@ function showIncorrect() {
     <section class="incorrect-answer" role="main">
         <h2>You got it wrong!</h2>
         <p>The correct answer is ${STORE[questionIndex - 1].correctAnswer}</p>
-        <img class="feedback-image-wrong" src="https://github.com/hotdogmcgee/Thinkful-Quiz-App---Module-8.7-8/blob/master/images/Broken%20guitar.jpg?raw=true" alt="Sad broken guitar">
+        <div>
+            <img class="feedback-image-wrong" src="https://github.com/hotdogmcgee/Thinkful-Quiz-App---Module-8.7-8/blob/master/images/Broken%20guitar.jpg?raw=true" alt="Sad broken guitar">
+        </div>
         <button class="js-next-question submit-button">Next Question</button>
     </section>
     `)
@@ -124,7 +128,9 @@ function showIncorrect() {
     <section class="incorrect-answer" role="main">
         <h2>You got it wrong!</h2>
         <p>The correct answer is ${STORE[questionIndex - 1].correctAnswer}</p>
-        <img class="feedback-image-wrong" src="https://github.com/hotdogmcgee/Thinkful-Quiz-App---Module-8.7-8/blob/master/images/Broken%20guitar.jpg?raw=true" alt="Sad broken guitar">
+        <div>
+            <img class="feedback-image-wrong" src="https://github.com/hotdogmcgee/Thinkful-Quiz-App---Module-8.7-8/blob/master/images/Broken%20guitar.jpg?raw=true" alt="Sad broken guitar">
+        </div>
         <button class="js-next-question submit-button">See Results</button>
     </section>
     `)
