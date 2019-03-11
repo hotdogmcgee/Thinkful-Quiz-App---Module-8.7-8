@@ -23,7 +23,6 @@ function handleSubmit() {
 //larger function designed to handle rendering of Main section when form button is clicked, calls on other functions to return values
 function renderMain(isCorrect, renderNext) {
     if (questionIndex <= 10) {
-
         if (renderNext === true){
             createQuestion();
             increaseQuestionNumber();
@@ -31,6 +30,7 @@ function renderMain(isCorrect, renderNext) {
             updateQuestionNumber ()
         }
         else {
+
                 if (isCorrect === true) {
                     addToScore();
                     showCorrect();
@@ -56,13 +56,13 @@ function createQuestion() {
                     <input class="answer" type="radio" name="option" tabindex="1" required value="${STORE[questionIndex].answers[0]}"><span>${STORE[questionIndex].answers[0]}</span>
                 </label>
                 <label class="answer-template"> 
-                    <input class="answer" type="radio" name="option" tabindex="2" required value="${STORE[questionIndex].answers[1]}"><span>${STORE[questionIndex].answers[1]}</span>
+                    <input class="answer" type="radio" name="option" tabindex="1" required value="${STORE[questionIndex].answers[1]}"><span>${STORE[questionIndex].answers[1]}</span>
                     </label>
                 <label class="answer-template">
-                    <input class="answer" type="radio" name="option" tabindex="3" required value="${STORE[questionIndex].answers[2]}"><span>${STORE[questionIndex].answers[2]}</span>
+                    <input class="answer" type="radio" name="option" tabindex="1" required value="${STORE[questionIndex].answers[2]}"><span>${STORE[questionIndex].answers[2]}</span>
                 </label>
                 <label class="answer-template">
-                    <input class="answer" type="radio" name="option" tabindex="4" required value="${STORE[questionIndex].answers[3]}"><span>${STORE[questionIndex].answers[3]}</span>
+                    <input class="answer" type="radio" name="option" tabindex="1" required value="${STORE[questionIndex].answers[3]}"><span>${STORE[questionIndex].answers[3]}</span>
                 </label>
                 <button class="submit-button">Submit</button>
             </fieldset>
@@ -74,6 +74,13 @@ function createQuestion() {
 function handleNextQuestion() {
     $('main').on('click', '.js-next-question', function(event) {
         renderMain(false, true);
+        }
+    )
+}
+
+function handleFinalPage() {
+    $('main').on('click', '.js-results-page', function(event) {
+        renderFinalPage();
         }
     )
 }
@@ -94,14 +101,14 @@ function showCorrect() {
     `)
     } else {
         //provides See Results button
-        increaseQuestionIndex();
+        //increaseQuestionIndex();
         $('main').html(`
     <section class="correct-answer" role="main">
         <h2>Correct!</h2>
         <div>
             <img class="feedback-image-correct" src="https://github.com/hotdogmcgee/Thinkful-Quiz-App---Module-8.7-8/blob/master/images/Segovia%20-%20You%20Got%20it%20Right!.jpg?raw=true" alt="Segovia Smiling">
         </div>
-        <button class="js-next-question submit-button">See Results</button>
+        <button class="js-results-page submit-button">See Results</button>
     </section>
     `)
     }
@@ -123,7 +130,7 @@ function showIncorrect() {
     `)
     } else {
         //provides See Results button
-        increaseQuestionIndex();
+        //increaseQuestionIndex();
         $('main').html(`
     <section class="incorrect-answer" role="main">
         <h2>You got it wrong!</h2>
@@ -131,11 +138,12 @@ function showIncorrect() {
         <div>
             <img class="feedback-image-wrong" src="https://github.com/hotdogmcgee/Thinkful-Quiz-App---Module-8.7-8/blob/master/images/Broken%20guitar.jpg?raw=true" alt="Sad broken guitar">
         </div>
-        <button class="js-next-question submit-button">See Results</button>
+        <button class="js-results-page submit-button">See Results</button>
     </section>
     `)
     }
 }
+
 
 //renders last page, displaying user score and giving option to try again
 function renderFinalPage() {
@@ -200,6 +208,7 @@ function makeQuiz() {
     handleSubmit();
     handleNextQuestion();
     handleRestart();
+    handleFinalPage();
 }
 
 $(makeQuiz);
